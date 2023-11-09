@@ -1,13 +1,17 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AlterTableCart1693811193505 implements MigrationInterface {
+export class alterTableState1675458729381 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
-        ALTER TABLE CART ADD ACTIVE BOOLEAN NOT NULL `);
+            ALTER TABLE state
+                ADD uf varchar(2) NOT NULL;
+        `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
-        ALTER TABLE CART DROP ACTIVE`);
+            ALTER TABLE state
+                drop uf;
+        `);
   }
 }

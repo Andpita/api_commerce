@@ -1,13 +1,15 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class AlterTableOrderProduct1694593550281 implements MigrationInterface {
+export class alterTableCart1675939002410 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.query(`
-        ALTER TABLE public.order_product ALTER COLUMN price TYPE float8 USING price::float8;
+            ALTER TABLE cart ADD active boolean NOT NULL;
         `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.query(``);
+    queryRunner.query(`
+            ALTER TABLE cart drop active;
+        `);
   }
 }
