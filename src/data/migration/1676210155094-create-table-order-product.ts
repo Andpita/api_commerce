@@ -10,7 +10,7 @@ export class createTableOrderProduct1676210155094
                 order_id int NOT NULL,
                 product_id int NOT NULL,
                 amount int NOT NULL,
-                price int NOT NULL,
+                price double NOT NULL,
                 created_at timestamp without time zone DEFAULT now() NOT NULL,
                 updated_at timestamp without time zone DEFAULT now() NOT NULL,
                 primary key (id),

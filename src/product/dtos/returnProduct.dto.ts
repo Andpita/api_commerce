@@ -6,6 +6,10 @@ export class ReturnProductDTO {
   name: string;
   price: number;
   image: string;
+  width: number;
+  height: number;
+  length: number;
+  diameter: number;
   weight: number;
   categoryId: number;
   category?: ReturnCategoryDTO;
@@ -15,6 +19,10 @@ export class ReturnProductDTO {
     this.name = product.name;
     this.price = product.price;
     this.image = product.image;
+    this.width = product.width;
+    this.height = product.height;
+    this.length = product.length;
+    this.diameter = product.diameter;
     this.weight = product.weight;
     this.categoryId = product.categoryId;
     this.category = product.category

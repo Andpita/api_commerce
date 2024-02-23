@@ -8,6 +8,7 @@ export class ReturnUserDTO {
   phone: string;
   cpf: string;
   addresses?: ReturnAddressDTO[];
+  typeUser?: number;
 
   constructor(userEntity: UserEntity) {
     this.id = userEntity.id;
@@ -15,6 +16,7 @@ export class ReturnUserDTO {
     this.email = userEntity.email;
     this.phone = userEntity.phone;
     this.cpf = userEntity.cpf;
+    this.typeUser = userEntity.typeUser;
 
     this.addresses = userEntity.addresses
       ? userEntity.addresses.map((address) => new ReturnAddressDTO(address))
