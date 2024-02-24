@@ -67,16 +67,25 @@ export class ProductService {
     return product;
   }
 
-  async findProductById(id: number): Promise<ProductEntity> {
+  async findProductById(
+    productId: number,
+    isRelations?: boolean,
+  ): Promise<ProductEntity> {
+    const relations = isRelations
+      ? {
+          category: true,
+        }
+      : undefined;
+
     const product = await this.productRepository.findOne({
       where: {
-        id,
+        id: productId,
       },
-      relations: { category: true },
+      relations,
     });
 
     if (!product) {
-      throw new BadRequestException(`Produto ${id} não encontrado`);
+      throw new NotFoundException(`Product id: ${productId} not found`);
     }
 
     return product;

@@ -11,8 +11,8 @@ export class ReturnProductDTO {
   length: number;
   diameter: number;
   weight: number;
-  categoryId: number;
   category?: ReturnCategoryDTO;
+  categoryId?: number;
 
   constructor(product: ProductEntity) {
     this.id = product.id;
