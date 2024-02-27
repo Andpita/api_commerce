@@ -21,7 +21,7 @@ import { CategoryEntity } from './entities/category.entity';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Roles(UserType.User, UserType.Admin, UserType.Root)
+  //@Roles(UserType.User, UserType.Admin, UserType.Root)
   @Get()
   @UsePipes(ValidationPipe)
   async findAllCategories(): Promise<ReturnCategoryDTO[]> {

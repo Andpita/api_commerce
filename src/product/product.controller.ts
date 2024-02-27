@@ -33,9 +33,9 @@ export class ProductController {
     return this.productService.findAllPage(search, size, page);
   }
 
-  @Roles(UserType.User, UserType.Admin, UserType.Root)
+  //@Roles(UserType.User, UserType.Admin, UserType.Root)
   @Get()
-  @UsePipes(ValidationPipe)
+  //@UsePipes(ValidationPipe)
   async findAllProducts(): Promise<ReturnProductDTO[]> {
     return (await this.productService.findAllProducts([], true)).map(
       (product) => new ReturnProductDTO(product),
