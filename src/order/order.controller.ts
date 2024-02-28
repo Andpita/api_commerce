@@ -37,9 +37,7 @@ export class OrderController {
     @UserId() userId: number,
     @Res({ passthrough: true }) res?: Response,
   ): Promise<ReturnOrderDTO[]> {
-    const orders = await this.orderService
-      .findMyOrders(userId)
-      .catch(() => undefined);
+    const orders = await this.orderService.findMyOrders(userId);
 
     if (orders) {
       return orders.map((order: OrderEntity) => new ReturnOrderDTO(order));

@@ -43,10 +43,7 @@ export class CartController {
     @UserId() userId: number,
     @Res({ passthrough: true }) res?: Response,
   ): Promise<ReturnCartDTO> {
-    const cart = await this.cartService
-      .checkCart(userId, true)
-      .catch(() => undefined);
-
+    const cart = await this.cartService.checkCart(userId, true);
     if (cart) {
       return new ReturnCartDTO(cart);
     }
