@@ -5,6 +5,7 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -16,6 +17,7 @@ import { UpdatePasswordDTO } from './dtos/updatePassword.dto';
 import { UserId } from '../decorator/userId.decorator';
 import { UserType } from './enum/user-type.enum';
 import { Roles } from '../decorator/roles.decorator';
+import { UpdateUserDTO } from './dtos/updateUser.dto';
 
 @Controller('user')
 export class UserController {
@@ -58,6 +60,19 @@ export class UserController {
   ): Promise<ReturnUserDTO> {
     const user = new ReturnUserDTO(
       await this.userService.updateUserPassword(userId, newPassword),
+    );
+
+    return user;
+  }
+
+  @Put()
+  @UsePipes(ValidationPipe)
+  async updateUser(
+    @UserId() userId: number,
+    @Body() updateUser: UpdateUserDTO,
+  ): Promise<ReturnUserDTO> {
+    const user = new ReturnUserDTO(
+      await this.userService.updateUser(userId, updateUser),
     );
 
     return user;

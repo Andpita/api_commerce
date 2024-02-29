@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import { UserType } from './enum/user-type.enum';
 import { UpdatePasswordDTO } from './dtos/updatePassword.dto';
 import { createHashPassword, decrypt } from '../utils/password';
+import { UpdateUserDTO } from './dtos/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -104,6 +105,26 @@ export class UserService {
     return this.userRepository.save({
       ...user,
       password: _password,
+    });
+  }
+
+  async updateUser(
+    userId: number,
+    updateUser: UpdateUserDTO,
+  ): Promise<UserEntity> {
+    const user = await this.findUserById(userId);
+    const userPass = user.password;
+
+    const isMatch = await decrypt(updateUser.password, user.password || '');
+
+    if (!isMatch) {
+      throw new BadRequestException('Senha inválida');
+    }
+
+    return this.userRepository.save({
+      ...user,
+      ...updateUser,
+      password: userPass,
     });
   }
 }
