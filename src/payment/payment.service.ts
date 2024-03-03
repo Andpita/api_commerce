@@ -49,6 +49,7 @@ export class PaymentService {
     cart: CartEntity,
   ): Promise<PaymentEntity> {
     const price = this.generateValueProducts(cart, products);
+    //const priceMoreFrete = price + //FRETE//;
 
     if (newOrder.amountPayments) {
       //cartão
@@ -63,7 +64,7 @@ export class PaymentService {
     } else if (newOrder.codePix && newOrder.datePayment) {
       //pix
       const paymentPix = new PaymentPixEntity(
-        PaymentType.Done,
+        PaymentType.Processing,
         price,
         0,
         price,
