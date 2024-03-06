@@ -23,7 +23,7 @@ import { Pagination } from '../page/dtos/pagination.dto';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Roles(UserType.User, UserType.Admin, UserType.Root)
+  //@Roles(UserType.User, UserType.Admin, UserType.Root)
   @Get('/page')
   async findAllPages(
     @Query('search') search?: string,
@@ -42,7 +42,7 @@ export class ProductController {
     );
   }
 
-  @Roles(UserType.User, UserType.Admin, UserType.Root)
+  //@Roles(UserType.User, UserType.Admin, UserType.Root)
   @UsePipes(ValidationPipe)
   @Get('/:id')
   async findProductById(@Param('id') id: number): Promise<ReturnProductDTO> {
