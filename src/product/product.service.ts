@@ -163,7 +163,13 @@ export class ProductService {
       throw new NotFoundException(`Produto ${id} não encontrado`);
     }
 
-    return await this.productRepository.delete(id);
+    try {
+      return await this.productRepository.delete(id);
+    } catch {
+      throw new BadRequestException(
+        `Produto ${id} vinculado a uma compra, use a opção de desativar`,
+      );
+    }
   }
 
   //update
